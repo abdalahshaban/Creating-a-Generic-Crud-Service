@@ -10,6 +10,12 @@ export class User {
 
 }
 
+export class Post {
+    public id: number;
+    public title: string;
+    public author: string;
+}
+
 class Address {
     public street: string;
     public suite: string;
