@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class UsersService extends CrudService<User, number> {
 
   constructor(protected _http: HttpClient) {
-    super(_http, `https://jsonplaceholder.typicode.com/users`)
+    super(_http, `${environment.api.baseUrl}/posts`)
   }
 
 }

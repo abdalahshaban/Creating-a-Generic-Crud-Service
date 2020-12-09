@@ -1,18 +1,18 @@
 import { Sort } from './sort.model';
 
 export class PageRequest {
-    public page: number;
-    public size: number;
-    public sort: Sort;
+    public _page: number;
+    public _limit: number;
+    public _sort: Sort;
 
-    constructor(page: number = 1, size: number = 10, sort: Sort = new Sort()) {
-        this.page = page;
-        this.size = size;
-        this.sort = sort;
+    constructor(_page: number = 1, _limit: number = 10, _sort: Sort = new Sort()) {
+        this._page = _page;
+        this._limit = _limit;
+        this._sort = _sort;
     }
 
-    public static from(page: number, size: number, sortColumn: string, sortDirection: string): PageRequest {
-        const sort: Sort = Sort.from(sortColumn, sortDirection);
-        return new PageRequest(page, size, sort);
+    public static from(_page: number, _limit: number, sortColumn: string, sortDirection: string): PageRequest {
+        const _sort: Sort = Sort.from(sortColumn, sortDirection);
+        return new PageRequest(_page, _limit, _sort);
     }
 }

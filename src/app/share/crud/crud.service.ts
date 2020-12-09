@@ -29,10 +29,10 @@ export class CrudService<T, ID> implements CrudRepository<T, ID> {
 
   findAllWithPagination(pageRequest?: PageRequest): Observable<Page<T>> {
     const params: { [key: string]: any } = !pageRequest ? {} : {
-      pageNumber: pageRequest.page,
-      pageSize: pageRequest.size,
-      sortCol: pageRequest.sort.column,
-      sortDir: pageRequest.sort.direction
+      _page: pageRequest._page,
+      _limit: pageRequest._limit,
+      _sort: pageRequest._sort.column,
+      _order: pageRequest._sort._order
     };
     return this._http.get<Page<T>>(this._base, { params: params });
   }

@@ -14,26 +14,40 @@ export class HomeComponent implements OnInit {
   public currentPage: Page<User>;
   constructor(private _usersService: UsersService) { }
 
+  pageRequest = new PageRequest();
+  pageCount: number;
+  _page = 1;
+  totalData = 22;
+  _limit = 10;
+  _sort = 'title';
+  _order = 'ASC';
+
   ngOnInit(): void {
-    this._fetchPageOfUsers()
+    this._fetchPageOfUsers(this.pageRequest);
   }
 
   private _fetchPageOfUsers(pageRequest?: PageRequest) {
     this._usersService.findAllWithPagination(pageRequest).pipe(
       take(1)).subscribe((data => {
-        console.log(data);
         this.currentPage = data;
+        this.pageCount = Math.ceil(this.totalData / this.pageRequest._limit);
       }))
   }
 
   public nextPage(): void {
-    console.log(this.currentPage.next);
-    this._fetchPageOfUsers(this.currentPage.next);
+    if (this.pageRequest._page === this.pageCount) {
+      return;
+    }
+    this.pageRequest._page++
+    this._fetchPageOfUsers(this.pageRequest);
   }
 
   public prevPage(): void {
-    console.log(this.currentPage.previous);
-    this._fetchPageOfUsers(this.currentPage.previous);
+    if (this.pageRequest._page === 1) {
+      return;
+    }
+    this.pageRequest._page--;
+    this._fetchPageOfUsers(this.pageRequest);
   }
 
 }

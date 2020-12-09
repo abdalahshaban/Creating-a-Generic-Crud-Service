@@ -30,13 +30,13 @@
                 </tbody>
             </table>
             <div>
-                <button class="btn btn-primary mr-2" role="button" type="button"
-                    [disabled]="currentPage?.previous?.page > currentPage?.current?.page" (click)="prevPage()">
+                <button class="btn btn-primary mr-2" role="button" type="button" [disabled]="pageRequest._page === 1"
+                    (click)="prevPage()">
                     Previous
                 </button>
-                <span>{{ currentPage?.current?.page }} of {{ currentPage?.totalPages }}</span>
+                <span>{{ pageRequest._page }} of {{ pageCount }}</span>
                 <button class="btn btn-primary ml-2" role="button" type="button"
-                    [disabled]="currentPage?.next?.page < currentPage?.current?.page" (click)="nextPage()">
+                    [disabled]="pageRequest._page === pageCount" (click)="nextPage()">
                     Next
                 </button>
             </div>
