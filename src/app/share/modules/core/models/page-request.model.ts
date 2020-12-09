@@ -1,3 +1,4 @@
+import { SortColumn, SortDirection } from './sort-direction.enum';
 import { Sort } from './sort.model';
 
 export class PageRequest {
@@ -11,7 +12,7 @@ export class PageRequest {
         this._sort = _sort;
     }
 
-    public static from(_page: number, _limit: number, sortColumn: string, sortDirection: string): PageRequest {
+    public static from(_page: number, _limit: number, sortColumn: SortColumn, sortDirection: SortDirection): PageRequest {
         const _sort: Sort = Sort.from(sortColumn, sortDirection);
         return new PageRequest(_page, _limit, _sort);
     }

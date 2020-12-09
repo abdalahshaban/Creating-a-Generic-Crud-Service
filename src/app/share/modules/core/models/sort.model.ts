@@ -1,18 +1,19 @@
-import { SortDirection } from './sort-direction.enum';
+import { SortColumn, SortDirection } from './sort-direction.enum';
 export class Sort {
     public _order: SortDirection;
-    public column: string;
+    public column: SortColumn;
 
-    constructor(column: string = 'id', _order: SortDirection = SortDirection.ASCENDING) {
+    constructor(column: SortColumn = SortColumn.ID, _order: SortDirection = SortDirection.ASCENDING) {
         this._order = _order;
         this.column = column;
     }
 
-    public static from(column: string, _order: string): Sort {
-        switch (_order.toUpperCase()) {
-            case 'ASC': return new Sort(column, SortDirection.ASCENDING);
-            case 'DESC': return new Sort(column, SortDirection.DESCENDING);
-            default: return new Sort(column, SortDirection.ASCENDING);
-        }
+    public static from(column: SortColumn, _order: SortDirection): Sort {
+        return new Sort(column, SortDirection.ASCENDING);
+        // switch (_order.toUpperCase()) {
+        //     case 'ASC': return new Sort(column, SortDirection.ASCENDING);
+        //     case 'DESC': return new Sort(column, SortDirection.DESCENDING);
+        //     default: return new Sort(column, SortDirection.ASCENDING);
+        // }
     }
 }

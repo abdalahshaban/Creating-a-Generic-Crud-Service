@@ -5,6 +5,7 @@ import { Page } from 'src/app/share/modules/core/models/page.model';
 import { User } from '../../../models/User.model';
 import { PageRequest } from 'src/app/share/modules/core/models/page-request.model';
 import { take } from "rxjs/operators"
+import { SortColumn, SortDirection } from 'src/app/share/modules/core/models/sort-direction.enum';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   pageRequest = new PageRequest();
   pageCount: number;
-  totalData = 22;
+  totalData = 32;
   _limit = 10;
   _sort = 'title';
   _order = 'ASC';
@@ -39,6 +40,8 @@ export class HomeComponent implements OnInit {
       return;
     }
     this.pageRequest._page++
+    // this.pageRequest._sort.column = SortColumn.title;
+    // this.pageRequest._sort._order = SortDirection.DESCENDING
     this._fetchPageOfUsers(this.pageRequest);
   }
 
